@@ -1,0 +1,22 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "Multiplayer Tic Tac Toe Game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/androidfreakers/tictactoe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/androidfreakers/tictactoe/issues"
+  },
+  "homepage": "https://github.com/androidfreakers/tictactoe",
+  "dependencies": {
+    "express.io": "^1.1.13"
+  }
+}
