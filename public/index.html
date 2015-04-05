@@ -7,6 +7,11 @@
         <p>Test web socket client</p>
     </body>
     <script>
-        var ws = new WebSocket("ws://127.0.0.1:8080", 'echo-protocol')
+        var ws = new WebSocket("ws://127.0.0.1:8080");
+        ws.onmessage = function(msg){
+            console.log(msg)
+            ws.send("test");
+        }
+        
     </script>
 </html>
