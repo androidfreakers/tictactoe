@@ -6,9 +6,9 @@
     <body>
         <p>Test Express.io</p>
     </body>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="socket.io.js"></script>
     <script>
-        io = io.connect("http://127.0.0.1:8080")
-        io.emit("hello","Hello")
+        io = io.connect("ws://127.0.0.1:8080")
+        io.emit("hello","Gagan")
     </script>
 </html>

@@ -5,7 +5,15 @@ app.http().io();
 
 
 app.get("/", function(req, res){
-    res.sendfile("test");
+    res.sendfile("index.html");
 });
 
-app.listen(8080);
+app.io.on("connection", function(socket){
+    console.log('a user connected');
+    socket.on("hello", function(message){
+        console.log(message)
+    })
+});
+app.listen(8080, function(){
+    console.log("listening on 8080");
+});
