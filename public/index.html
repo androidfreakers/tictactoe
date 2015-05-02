@@ -1,17 +1,15 @@
 <!doctype HTML>
 <html>
     <head>
-        <title>Tic Tac Toe</title>
+        <title>Test express io</title>
     </head>
     <body>
-        <p>Test web socket client</p>
+        <p>Test Express.io</p>
+        <div>Live preview is working.. </div>
     </body>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-        var ws = new WebSocket("ws://127.0.0.1:8080");
-        ws.onmessage = function(msg){
-            console.log(msg)
-            ws.send("test");
-        }
-        
+        io = io.connect("http://127.0.0.1:8081")
+        io.emit("hello","Hello")
     </script>
 </html>

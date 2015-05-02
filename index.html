@@ -5,10 +5,11 @@
     </head>
     <body>
         <p>Test Express.io</p>
+        <div>Live preview is working.. </div>
     </body>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        io = io.connect("http://127.0.0.1:8080")
+        io = io.connect("http://127.0.0.1:8081")
         io.emit("hello","Hello")
     </script>
 </html>
