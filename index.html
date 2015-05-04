@@ -2,14 +2,48 @@
 <html>
     <head>
         <title>Test express io</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     </head>
     <body>
         <p>Test Express.io</p>
-        <div>Live preview is working.. </div>
+        <div style="float:left">
+          User List
+          <ol id="userList">
+          </ol>
+        </div>
+        <div style="float:right">
+
+          UserName: <input type="text" id="name" name="userName"></br></br>
+          Message: <input type="text" id="message" name="message"></br></br>
+          <button id="submitMsg">Submit Message</button>
+
+        </div>
     </body>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         io = io.connect("http://127.0.0.1:8081")
-        io.emit("hello","Hello")
+        io.emit("userName",prompt("Enter user name"));
+
+        io.on("newUser", function(userName){
+          $("#userList").append("<li>"+userName+"</li>")
+        })
+
+        io.on("userList", function(userMap){
+          console.log(userMap)
+          userMap.forEach(function(soc, userName){
+            $("#userList").append("<li>"+userName+"</li>")
+          });
+        })
+
+        $("#submitMsg").click(function(){
+          io.emit("message",{
+            "userName" : $("#name").val(),
+            "message" : $("#message").val()
+          })
+        })
+
+        io.on("message", function(msgObj){
+            alert(msgObj["userName"] + " has sent message " + msgObj["message"] );
+        })
     </script>
 </html>

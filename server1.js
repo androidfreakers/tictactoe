@@ -3,15 +3,28 @@ var fs = require("fs");
 var app = expressio();
 app.http().io();
 
-
+var userMap = {};
 app.get("/", function(req, res){
     res.sendfile("index.html");
 });
 
 app.io.on("connection", function(socket){
-    console.log('a user connected');
-    socket.on("hello", function(message){
-        console.log(message)
+    socket.emit("userList", userMap);
+
+    socket.on("userName", function(userName){
+      socket.userName = userName;
+      userMap[userName] = socket;
+      app.io.broadcast("newUser",userName)
+    });
+
+    socket.on("message", function(msgObj){
+      var userName = msgObj["userName"];
+
+      userMap[userName].emit("message", {
+        "userName" : socket.userName,
+        "message" : msgObj["message"]
+      })
+
     })
 });
 
