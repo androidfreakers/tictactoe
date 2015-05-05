@@ -26,8 +26,7 @@ nsp.on('connection', function(socket){
   });
 
   socket.on("message", function(msgObj){
-    console.log(socket.name)
-    nsp.to(userList[msgObj["name"]]).emit("message", {"name":socket.name, "message":msgObj["message"]});
+    nsp.sockets[userList[msgObj["name"]]].emit("message", {"name":socket.name, "message":msgObj["message"]});
   })
 });
 
