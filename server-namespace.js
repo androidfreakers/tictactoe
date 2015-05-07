@@ -23,6 +23,7 @@ nsp.on('connection', function(socket){
 
   socket.on("disconnect", function(){
     delete userList[socket.name];
+    nsp.emit("deleteUser", socket.name);
   });
 
   socket.on("message", function(msgObj){
